@@ -1,0 +1,111 @@
+.stickyWrapper {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 20px 0;
+    align-items: center;
+    position: sticky;
+    top: 73px;
+    background: rgba(11, 11, 15, 0.95);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    z-index: 50;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.filterContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 24px;
+}
+
+.pillsWrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    flex: 1;
+}
+
+/* Hide scrollbar but allow scrolling */
+.pillsWrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.pillsWrapper {
+    -ms-overflow-style: none;
+}
+
+@supports (scrollbar-width: none) {
+    .pillsWrapper {
+        scrollbar-width: none;
+    }
+}
+
+.pillsGroup {
+    display: flex;
+    gap: 8px;
+}
+
+.pill {
+    white-space: nowrap;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.05);
+    color: #B4B4B8;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.pill:hover {
+    background: rgba(255, 255, 255, 0.10);
+    color: #FFFFFF;
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #FFFFFF;
+    border-color: transparent;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.divider {
+    width: 1px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.controls {
+    flex-shrink: 0;
+}
+
+.sortSelect {
+    background: #16161A;
+    color: #FFFFFF;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    outline: none;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%236B6B70' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+}
+
+@media (max-width: 768px) {
+    .pill {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+}

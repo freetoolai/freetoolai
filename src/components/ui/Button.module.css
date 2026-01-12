@@ -1,0 +1,71 @@
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: none;
+    font-family: inherit;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+}
+
+.button:active {
+    transform: scale(0.98);
+}
+
+/* Variants */
+.primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #FFFFFF;
+    font-size: 16px;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.primary:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.secondary {
+    background: rgba(255, 255, 255, 0.05);
+    color: #FFFFFF;
+    font-size: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.secondary:hover {
+    background: rgba(255, 255, 255, 0.10);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.ghost {
+    background: transparent;
+    color: #B4B4B8;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.ghost:hover {
+    color: #FFFFFF;
+}
+
+/* Sizes */
+.small {
+    padding: 8px 16px;
+    font-size: 14px;
+}
+
+.medium {
+    padding: 12px 24px;
+    font-size: 16px;
+}
+
+.large {
+    padding: 16px 32px;
+    font-size: 18px;
+}
