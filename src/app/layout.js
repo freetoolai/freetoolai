@@ -1,4 +1,5 @@
 import './globals.css';
+import Script from 'next/script';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 
@@ -21,6 +22,10 @@ export default function RootLayout({ children }) {
                     {children}
                 </main>
                 <Footer />
+                <Script
+                    src="https://s.skimresources.com/js/297317X1784802.skimlinks.js"
+                    strategy="afterInteractive"
+                />
             </body>
         </html>
     );
