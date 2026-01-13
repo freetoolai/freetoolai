@@ -18,7 +18,7 @@ async function run() {
         }
         console.log("API Key Check: Present");
 
-        const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
         const prompt = `Identify a real, popular AI tool launched or trending in 2024-2025. 
     Return ONLY a JSON object representing the tool, following this exact schema:
