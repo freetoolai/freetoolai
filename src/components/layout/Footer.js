@@ -1,3 +1,5 @@
+"use client";
+
 import Link from 'next/link';
 import { Twitter, Github, Globe, Mail, Linkedin, Instagram, Facebook, Youtube, Play, Shield, User, LogOut } from 'lucide-react';
 import styles from './Footer.module.css';
