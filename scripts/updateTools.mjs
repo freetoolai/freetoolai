@@ -11,6 +11,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 async function run() {
     try {
         console.log("Starting automation script...");
+        // Force update to reset file state
 
         if (!process.env.GEMINI_API_KEY) {
             throw new Error("GEMINI_API_KEY is missing from environment variables.");
