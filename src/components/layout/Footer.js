@@ -70,14 +70,19 @@ export default function Footer() {
                     {/* Column 5: User & Social */}
                     <div className={styles.column}>
                         <div className={styles.userControls}>
-                            <div className={styles.profileBtn}>
+                            <Link href="/profile" className={styles.profileBtn}>
                                 <div className={styles.avatar}>
                                     <span>A</span>
                                     <span className={styles.badge}>5</span>
                                 </div>
                                 <span>Profile</span>
-                            </div>
-                            <button className={styles.logoutBtn}>Logout</button>
+                            </Link>
+                            <button
+                                className={styles.logoutBtn}
+                                onClick={() => alert('Logged out successfully (Simulator)')}
+                            >
+                                Logout
+                            </button>
                         </div>
 
                         <div className={styles.socialGrid}>

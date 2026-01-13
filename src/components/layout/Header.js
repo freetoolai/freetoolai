@@ -174,6 +174,39 @@ export default function Header() {
             {/* Mobile Menu */}
             {isMobileMenuOpen && (
                 <div className={styles.mobileMenu}>
+                    <div className={styles.mobileSearch}>
+                        <Search className={styles.searchIcon} size={18} />
+                        <input
+                            type="text"
+                            placeholder="Search tools..."
+                            className={styles.searchInput}
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            onFocus={() => setIsSearchFocused(true)}
+                        />
+                        {/* Mobile Search Dropdown */}
+                        {isSearchFocused && searchResults.length > 0 && (
+                            <div className={styles.searchDropdown} style={{ position: 'relative', marginTop: 8 }}>
+                                {searchResults.map(result => (
+                                    <div
+                                        key={result.id}
+                                        className={styles.searchItem}
+                                        onClick={() => {
+                                            handleSearchSelect(result.slug);
+                                            setIsMobileMenuOpen(false);
+                                        }}
+                                    >
+                                        <img src={result.logo} alt="" className={styles.searchItemLogo} />
+                                        <div>
+                                            <div className={styles.searchItemName}>{result.name}</div>
+                                            <div className={styles.searchItemType}>{result.pricing}</div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+
                     {navLinks.map((link) => (
                         <Link
                             key={link.name}

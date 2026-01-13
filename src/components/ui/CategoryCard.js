@@ -18,8 +18,8 @@ export default function CategoryCard({ category }) {
 
     return (
         <Link href={`/category/${category.id}`} className={styles.card}>
-            <div className={styles.iconWrapper}>
-                <IconComponent size={24} className={styles.icon} />
+            <div className={styles.iconWrapper} style={{ background: category.gradient }}>
+                <IconComponent size={24} className={styles.icon} style={{ color: '#FFF' }} />
             </div>
             <div className={styles.content}>
                 <h3 className={styles.name}>{category.name}</h3>

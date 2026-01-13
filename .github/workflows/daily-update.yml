@@ -2,7 +2,7 @@ name: Daily AI Tool Update
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Run at 00:00 every day
+    - cron: '0 */6 * * *' # Run every 6 hours (4 times a day)
   workflow_dispatch: # Allow manual trigger
 
 jobs:

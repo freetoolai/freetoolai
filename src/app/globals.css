@@ -1,3 +1,26 @@
+[data-theme="light"] {
+  /* PRIMARY COLORS */
+  --color-bg-primary: #FFFFFF;
+  --color-bg-secondary: #F4F4F5;
+  --color-bg-tertiary: #E4E4E7;
+
+  /* TEXT COLORS */
+  --color-text-primary: #18181B;
+  --color-text-secondary: #71717A;
+  --color-text-tertiary: #A1A1AA;
+
+  /* BORDER COLORS */
+  --border-subtle: rgba(0, 0, 0, 0.1);
+  --border-medium: rgba(0, 0, 0, 0.15);
+  --border-strong: rgba(0, 0, 0, 0.2);
+  --border-accent: rgba(102, 126, 234, 0.5);
+
+  /* OVERLAY COLORS */
+  --overlay-light: rgba(0, 0, 0, 0.05);
+  --overlay-medium: rgba(0, 0, 0, 0.1);
+  --overlay-dark: rgba(255, 255, 255, 0.5);
+}
+
 :root {
   /* PRIMARY COLORS */
   --color-bg-primary: #0B0B0F;
