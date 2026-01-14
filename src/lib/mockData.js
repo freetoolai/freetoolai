@@ -83,7 +83,7 @@ export const tools = [
 ];
 
 export const stats = {
-    totalTools: 1250,
+    totalTools: 1251,
     totalCategories: 47,
     lastUpdated: '1/14/2026',
     freePercentage: '100%',
