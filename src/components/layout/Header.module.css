@@ -278,12 +278,30 @@
 
 .fullWidthBtn {
     width: 100%;
+    display: flex;
     justify-content: center;
 }
 
 .mobileSearch {
     position: relative;
     margin-bottom: 8px;
+}
+
+.mobileSearch .searchIcon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    color: #6B6B70;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.mobileSearch .searchInput {
+    padding-left: 48px;
+    width: 100%;
 }
 
 @keyframes slideDown {
