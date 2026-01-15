@@ -1,15 +1,15 @@
 import Link from 'next/link';
 import clsx from 'clsx';
-import { ChevronRight, Image, FileText, Video, Mic2, Code2, BarChart3, Binary, Sparkles } from 'lucide-react';
+import { ChevronRight, Palette, Bot, Clapperboard, Headphones, Terminal, Briefcase, Sparkles } from 'lucide-react';
 import styles from './CategoryCard.module.css';
 
 const IconMap = {
-    'image-ai': Image,
-    'text-ai': FileText,
-    'video-ai': Video,
-    'audio-ai': Mic2,
-    'code-ai': Code2,
-    'business-ai': BarChart3,
+    'image-ai': Palette,
+    'text-ai': Bot,
+    'video-ai': Clapperboard,
+    'audio-ai': Headphones,
+    'code-ai': Terminal,
+    'business-ai': Briefcase,
     'sparkles': Sparkles,
 };
 
