@@ -1,8 +1,13 @@
+"use client";
+
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { FaStar, FaChartLine, FaBookmark, FaArrowUpRightFromSquare, FaShare } from 'react-icons/fa6';
+import clsx from 'clsx';
 import ToolIcon from './ToolIcon';
 import styles from './ToolCard.module.css';
 
 export default function ToolCard({ tool }) {
-    // ... rest of component logic remains same until return
     const [isBookmarked, setIsBookmarked] = useState(false);
     const [bookmarkCount, setBookmarkCount] = useState(tool.saves || 2400);
 
