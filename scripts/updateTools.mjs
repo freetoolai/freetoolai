@@ -1,24 +1,35 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
+import { fileURLToPath, pathToFileURL } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+// Import affiliate helper
+const affiliatePath = path.resolve(__dirname, '../src/lib/affiliate.js');
+let getAffiliateLink;
+try {
+    const affiliateUrl = pathToFileURL(affiliatePath).href;
+    console.log(`Loading affiliate module from: ${affiliateUrl}`);
+    const affiliateModule = await import(affiliateUrl);
+    getAffiliateLink = affiliateModule.getAffiliateLink;
+    console.log("Affiliate module loaded successfully.");
+} catch (e) {
+    console.warn("Affiliate module not found or failed to load:", e.message);
+}
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 async function run() {
     try {
         console.log("Starting automation script...");
-        // Force update to reset file state
 
         if (!process.env.GEMINI_API_KEY) {
             throw new Error("GEMINI_API_KEY is missing from environment variables.");
         }
-        console.log("API Key Check: Present");
 
-        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
         const prompt = `Identify a real, popular AI tool launched or trending in 2024-2025. 
     Return ONLY a JSON object representing the tool, following this exact schema:
@@ -35,7 +46,7 @@ async function run() {
         "views": "e.g. 100K",
         "logo": "https://img.logo.dev/placeholder.com?token=FIXME",
         "features": ["3 key features"],
-        "website": "Valid URL",
+        "website": "Valid URL (e.g. https://example.com)",
         "addedDate": "YYYY-MM-DD",
         "isFeatured": false,
         "isTrending": true
@@ -46,17 +57,28 @@ async function run() {
         const response = await result.response;
         const text = response.text();
 
-        console.log("Raw Response from Gemini:", text);
-
-        // Clean JSON output in case Gemini adds markdown backticks
+        // Clean JSON output
         const jsonStr = text.replace(/```json|```/g, '').trim();
+        console.log("Gemini Response cleaned.");
         const newTool = JSON.parse(jsonStr);
 
-        console.log(`Parsed Tool: ${newTool.name}`);
+        console.log(`New Tool Identified: ${newTool.name}`);
+
+        // Inject Affiliate Link
+        if (getAffiliateLink) {
+            const affiliateUrl = getAffiliateLink(newTool.slug, newTool.website);
+            if (affiliateUrl !== newTool.website) {
+                console.log(`Affiliate logic matched! Injecting affiliate link: ${affiliateUrl}`);
+                newTool.affiliateLink = affiliateUrl;
+
+                if (newTool.description && !newTool.description.includes('Try it here')) {
+                    newTool.description += ` Try it here: ${affiliateUrl}`;
+                }
+            }
+        }
 
         // Read mockData.js
-        const dataPath = path.join(__dirname, '../src/lib/mockData.js');
-        console.log(`Reading data from: ${dataPath}`);
+        const dataPath = path.resolve(__dirname, '../src/lib/mockData.js');
         let content = fs.readFileSync(dataPath, 'utf8');
 
         // Add tool to tools array
@@ -67,9 +89,9 @@ async function run() {
             const toolsContent = match[1];
             const updatedToolsContent = toolsContent + `    ${JSON.stringify(newTool, null, 8)},\n`;
             content = content.replace(toolsRegex, `export const tools = [${updatedToolsContent} ];`);
-            console.log("Tools array updated in memory.");
+            console.log("Tools array updated.");
         } else {
-            console.error("Critical: Could not find 'export const tools' array in mockData.js");
+            throw new Error("Could not find tools array in mockData.js");
         }
 
         // Update stats
@@ -77,23 +99,21 @@ async function run() {
         const statsMatch = content.match(statsRegex);
         if (statsMatch) {
             const statsStr = statsMatch[1];
-            let totalTools = parseInt(statsStr.match(/totalTools: (\d+)/)[1]);
-            totalTools += 1;
-            content = content.replace(/totalTools: \d+/, `totalTools: ${totalTools}`);
+            const totalToolsMatch = statsStr.match(/totalTools: (\d+)/);
+            if (totalToolsMatch) {
+                let totalTools = parseInt(totalToolsMatch[1]);
+                totalTools += 1;
+                content = content.replace(/totalTools: \d+/, `totalTools: ${totalTools}`);
+            }
             content = content.replace(/lastUpdated: '.*'/, `lastUpdated: '${new Date().toLocaleDateString()}'`);
-            console.log("Stats object updated in memory.");
-        } else {
-            console.error("Critical: Could not find 'export const stats' object in mockData.js");
+            console.log("Stats updated.");
         }
 
         fs.writeFileSync(dataPath, content);
-        console.log("Successfully updated mockData.js");
+        console.log("Successfully updated mockData.js with " + newTool.name);
 
     } catch (error) {
-        console.error("Detailed Error during update:", error);
-        if (error.response) {
-            console.error("API Response Error details:", JSON.stringify(error.response, null, 2));
-        }
+        console.error("Automation script failed:", error);
         process.exit(1);
     }
 }

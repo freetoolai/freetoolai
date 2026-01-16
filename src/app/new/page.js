@@ -10,7 +10,7 @@ export default function NewToolsPage() {
     return (
         <div className="container">
             <div className={styles.header}>
-                <div className={styles.iconWrapper} style={{ background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)' }}>
+                <div className={styles.iconWrapper} style={{ background: '#10B981' }}>
                     <Clock color="white" size={32} />
                 </div>
                 <div>

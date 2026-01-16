@@ -1,59 +1,47 @@
-[data-theme="light"] {
-  /* PRIMARY COLORS */
-  --color-bg-primary: #FFFFFF;
-  --color-bg-secondary: #F4F4F5;
-  --color-bg-tertiary: #E4E4E7;
-
-  /* TEXT COLORS */
-  --color-text-primary: #18181B;
-  --color-text-secondary: #71717A;
-  --color-text-tertiary: #A1A1AA;
-
-  /* BORDER COLORS */
-  --border-subtle: rgba(0, 0, 0, 0.1);
-  --border-medium: rgba(0, 0, 0, 0.15);
-  --border-strong: rgba(0, 0, 0, 0.2);
-  --border-accent: rgba(102, 126, 234, 0.5);
-
-  /* OVERLAY COLORS */
-  --overlay-light: rgba(0, 0, 0, 0.05);
-  --overlay-medium: rgba(0, 0, 0, 0.1);
-  --overlay-dark: rgba(255, 255, 255, 0.5);
-}
-
 :root {
-  /* PRIMARY COLORS */
-  --color-bg-primary: #0B0B0F;
-  --color-bg-secondary: #16161A;
-  --color-bg-tertiary: #1F1F23;
+  /* --- PROJECT NEBULA DESIGN TOKENS --- */
 
-  /* TEXT COLORS */
-  --color-text-primary: #FFFFFF;
-  --color-text-secondary: #B4B4B8;
-  --color-text-tertiary: #6B6B70;
+  /* CORE PALETTE */
+  --color-bg-page: #0B0C10;
+  /* Rich Dark Blue-Black */
+  --color-bg-card: #15171E;
+  /* Lighter Surface */
+  --color-bg-card-hover: #1E293B;
+  --color-bg-subtle: #1E293B;
 
-  /* ACCENT GRADIENTS */
-  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  --gradient-success: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  /* ACCENTS */
+  --color-primary: #6366F1;
+  /* Indigo-500 */
+  --color-secondary: #8B5CF6;
+  /* Violet-500 */
+  --color-accent: #EC4899;
+  /* Pink-500 */
+  --gradient-primary: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+  --gradient-glow: linear-gradient(135deg, rgba(99, 102, 241, 0.5) 0%, rgba(139, 92, 246, 0.5) 100%);
 
-  /* SEMANTIC COLORS */
-  --color-success: #10B981;
-  --color-warning: #F59E0B;
-  --color-error: #EF4444;
-  --color-info: #3B82F6;
-  --color-premium: #8B5CF6;
+  /* TEXT - HIGH CONTRAST */
+  --color-text-main: #FFFFFF;
+  /* Pure White */
+  --color-text-muted: #E2E8F0;
+  /* Bright Gray (Slate-200) */
+  --color-text-dim: #CBD5E1;
+  /* Slate-300 */
 
-  /* BORDER COLORS */
-  --border-subtle: rgba(255, 255, 255, 0.05);
-  --border-medium: rgba(255, 255, 255, 0.10);
-  --border-strong: rgba(255, 255, 255, 0.15);
-  --border-accent: rgba(102, 126, 234, 0.3);
+  /* GLASSMORPHISM */
+  --glass-bg: rgba(30, 41, 59, 0.7);
+  /* Slate-800 with opacity */
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --glass-shine: rgba(255, 255, 255, 0.05);
+  --blur-strong: blur(20px);
 
-  /* OVERLAY COLORS */
-  --overlay-light: rgba(255, 255, 255, 0.05);
-  --overlay-medium: rgba(255, 255, 255, 0.10);
-  --overlay-dark: rgba(0, 0, 0, 0.5);
+  /* BORDERS */
+  --border-subtle: rgba(255, 255, 255, 0.1);
+  --border-highlight: rgba(255, 255, 255, 0.2);
+
+  /* SHADOWS */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 40px rgba(59, 130, 246, 0.15);
 
   /* SPACING SYSTEM (4px base) */
   --space-1: 4px;
@@ -78,18 +66,26 @@
   --radius-2xl: 20px;
   --radius-full: 9999px;
 
-  /* SHADOWS */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.15);
-  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.2);
-  --shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.25);
+  /* Shadows - Neutral & Minimal */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+  /* Removed Glows */
+  --shadow-glow: none;
+  --glow-primary: none;
+  --glow-secondary: none;
+  --glow-success: none;
 
-  /* GLOW EFFECTS */
-  --glow-primary: 0 0 20px rgba(102, 126, 234, 0.4);
-  --glow-secondary: 0 0 20px rgba(240, 147, 251, 0.4);
-  --glow-success: 0 0 20px rgba(16, 185, 129, 0.4);
+  /* Animation Speeds */
+  --transition-fast: 0.2s;
+  --transition-normal: 0.3s;
+  --transition-slow: 0.5s;
 
+  /* Blurs - Kept for glassmorphism but can be reduced if requested */
+  --blur-sm: blur(8px);
+  --blur-md: blur(12px);
+  --blur-lg: blur(16px);
+  --blur-strong: blur(24px);
   /* LEGACY ALIASES (to avoid immediate breakage) */
   --bg-primary: var(--color-bg-primary);
   --bg-secondary: var(--color-bg-secondary);
@@ -107,8 +103,8 @@
 }
 
 body {
-  background-color: var(--color-bg-primary);
-  color: var(--color-text-primary);
+  background-color: var(--color-bg-page);
+  color: var(--color-text-main);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   line-height: var(--text-base);
   -webkit-font-smoothing: antialiased;

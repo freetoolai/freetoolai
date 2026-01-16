@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { Search, Zap, Menu, X, Moon, Sun } from 'lucide-react';
+import { FaMagnifyingGlass, FaBars, FaXmark, FaHouse, FaLayerGroup, FaFire, FaWandMagicSparkles } from 'react-icons/fa6';
 import clsx from 'clsx';
 import Button from '../ui/Button';
 import { tools } from '@/lib/mockData';
@@ -12,7 +12,6 @@ import styles from './Header.module.css';
 export default function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [isDarkMode, setIsDarkMode] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
     const [isSearchFocused, setIsSearchFocused] = useState(false);
     const searchRef = useRef(null);
@@ -27,23 +26,6 @@ export default function Header() {
         };
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
-    // Theme toggle initialization
-    useEffect(() => {
-        const initializeTheme = () => {
-            const savedTheme = localStorage.getItem('theme');
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-                setIsDarkMode(true);
-                document.documentElement.setAttribute('data-theme', 'dark');
-            } else {
-                setIsDarkMode(false);
-                document.documentElement.setAttribute('data-theme', 'light');
-            }
-        };
-        initializeTheme();
     }, []);
 
     // Click outside search to close
@@ -66,31 +48,17 @@ export default function Header() {
         ).slice(0, 5);
     }, [searchQuery]);
 
-    const toggleTheme = () => {
-        if (isDarkMode) {
-            document.documentElement.setAttribute('data-theme', 'light');
-            localStorage.setItem('theme', 'light');
-            setIsDarkMode(false);
-        } else {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            localStorage.setItem('theme', 'dark');
-            setIsDarkMode(true);
-        }
-    };
-
     const handleSearchSelect = (slug) => {
         setSearchQuery('');
-        setSearchResults([]);
         setIsSearchFocused(false);
         router.push(`/tool/${slug}`);
     };
 
     const navLinks = [
-        { name: 'Home', href: '/' },
-        { name: 'Categories', href: '/category/image-ai' }, // Simplified link for demo
-        { name: 'New Tools', href: '/new' },
-        { name: 'Trending', href: '/trending' },
-        { name: 'Blog', href: '/blog' },
+        { name: 'Home', href: '/', icon: <FaHouse size={16} /> },
+        { name: 'Categories', href: '/category/image-ai', icon: <FaLayerGroup size={16} /> },
+        { name: 'New Tools', href: '/new', icon: <FaWandMagicSparkles size={16} /> },
+        { name: 'Trending', href: '/trending', icon: <FaFire size={16} /> },
     ];
 
     return (
@@ -98,13 +66,7 @@ export default function Header() {
             <div className={clsx("container", styles.container)}>
                 {/* Logo */}
                 <Link href="/" className={styles.logo}>
-                    <div className={styles.iconWrapper}>
-                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M14 2L24.3923 8V20L14 26L3.6077 20V8L14 2Z" stroke="white" strokeWidth="1.5" strokeLinejoin="round" />
-                            <path d="M10 9H18M10 14H16M10 19V9" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                    </div>
-                    <span className={styles.logoText}>freetoolai</span>
+                    <span className={styles.logoText}>FreeTool<span className={styles.logoHighlight}>AI</span></span>
                 </Link>
 
                 {/* Desktop Nav */}
@@ -115,6 +77,7 @@ export default function Header() {
                             href={link.href}
                             className={clsx(styles.navLink, pathname === link.href && styles.active)}
                         >
+                            <span className={styles.navIcon}>{link.icon}</span>
                             {link.name}
                         </Link>
                     ))}
@@ -122,7 +85,7 @@ export default function Header() {
 
                 {/* Search Bar */}
                 <div className={styles.searchWrapper} ref={searchRef}>
-                    <Search className={styles.searchIcon} size={18} />
+                    <FaMagnifyingGlass className={styles.searchIcon} size={18} />
                     <input
                         type="text"
                         placeholder="Search 1,000+ AI tools..."
@@ -154,10 +117,6 @@ export default function Header() {
 
                 {/* Actions */}
                 <div className={styles.actions}>
-                    <button onClick={toggleTheme} className={styles.iconButton} aria-label="Toggle Theme">
-                        {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-                    </button>
-
                     <Button href="/submit-tool" variant="primary" size="small" className={styles.submitBtn}>
                         Submit Tool
                     </Button>
@@ -166,7 +125,7 @@ export default function Header() {
                         className={styles.mobileMenuBtn}
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                     >
-                        {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                        {isMobileMenuOpen ? <FaXmark size={24} /> : <FaBars size={24} />}
                     </button>
                 </div>
             </div>
@@ -175,7 +134,7 @@ export default function Header() {
             {isMobileMenuOpen && (
                 <div className={styles.mobileMenu}>
                     <div className={styles.mobileSearch}>
-                        <Search className={styles.searchIcon} size={18} />
+                        <FaMagnifyingGlass className={styles.searchIcon} size={18} />
                         <input
                             type="text"
                             placeholder="Search tools..."

@@ -45,6 +45,22 @@ export default function Home() {
     const latestTools = filteredTools.slice(0, 12);
     const trendingTools = tools.filter(t => t.isTrending);
 
+    // Newsletter Logic
+    const [email, setEmail] = useState('');
+    const [status, setStatus] = useState('idle'); // idle, loading, success, error
+
+    const handleSubscribe = async (e) => {
+        e.preventDefault();
+        setStatus('loading');
+
+        // Simulate API call
+        setTimeout(() => {
+            setStatus('success');
+            setEmail('');
+            setTimeout(() => setStatus('idle'), 3000);
+        }, 1500);
+    };
+
     // Carousel Auto-scroll
     useEffect(() => {
         const interval = setInterval(() => {
@@ -200,7 +216,7 @@ export default function Home() {
                     <div className={styles.sectionHeader}>
                         <h2 className={styles.sectionTitle}>Browse by Category</h2>
                     </div>
-                    <div className={styles.categoriesGrid}>
+                    <div className={styles.bentoGrid}>
                         {categories.map(cat => (
                             <CategoryCard key={cat.id} category={cat} />
                         ))}
@@ -214,15 +230,30 @@ export default function Home() {
                     <div className={styles.newsletterCard}>
                         <h2 className={styles.newsletterTitle}>Get Weekly AI Updates</h2>
                         <p className={styles.newsletterText}>Join 15,000+ subscribers getting the best new tools in their inbox.</p>
-                        <div className={styles.newsletterForm}>
-                            <input type="email" placeholder="Enter your email address" className={styles.newsletterInput} />
-                            <Button variant="primary" size="large">Subscribe Free</Button>
-                        </div>
+
+                        <form className={styles.newsletterForm} onSubmit={handleSubscribe}>
+                            <input
+                                type="email"
+                                placeholder="Enter your email address"
+                                className={styles.newsletterInput}
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                                disabled={status === 'loading' || status === 'success'}
+                            />
+                            <Button
+                                variant="primary"
+                                size="large"
+                                type="submit"
+                                disabled={status === 'loading' || status === 'success'}
+                            >
+                                {status === 'loading' ? 'Subscribing...' : status === 'success' ? 'Subscribed! 🎉' : 'Subscribe Free'}
+                            </Button>
+                        </form>
                         <p className={styles.privacyNote}>We respect your inbox. Unsubscribe anytime.</p>
                     </div>
                 </div>
             </section>
-
         </div>
     );
 }

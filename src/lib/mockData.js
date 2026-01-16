@@ -5,6 +5,25 @@ export const categories = [
     { id: 'audio-ai', name: 'Audio AI', icon: '', count: 142, gradient: 'linear-gradient(135deg, #fccb90 0%, #d57eeb 100%)' },
     { id: 'code-ai', name: 'Code AI', icon: '', count: 98, gradient: 'linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%)' },
     { id: 'business-ai', name: 'Business AI', icon: '', count: 156, gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)' },
+    {
+        id: 'perplexity-ai',
+        name: 'Perplexity AI',
+        slug: 'perplexity',
+        description: 'An AI-powered search engine that provides direct answers to queries using various LLMs. Try it here: https://perplexity.ai?ref=freetoolai',
+        shortDescription: 'AI search and answer engine.',
+        category: 'text-ai',
+        pricing: 'Freemium',
+        price: 'Free / $20/mo',
+        rating: 4.8,
+        views: '2.5M',
+        logo: 'https://www.perplexity.ai/favicon.ico',
+        features: ['Source citation', 'Real-time search', 'Multiple models'],
+        website: 'https://perplexity.ai',
+        affiliateLink: 'https://perplexity.ai?ref=freetoolai',
+        addedDate: '2026-01-16',
+        isFeatured: false,
+        isTrending: true,
+    },
 ];
 
 export const tools = [
@@ -85,6 +104,6 @@ export const tools = [
 export const stats = {
     totalTools: 1257,
     totalCategories: 47,
-    lastUpdated: '1/15/2026',
+    lastUpdated: '15/1/2026',
     freePercentage: '100%',
 };

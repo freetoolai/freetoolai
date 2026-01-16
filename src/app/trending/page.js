@@ -9,7 +9,7 @@ export default function TrendingPage() {
     return (
         <div className="container">
             <div className={styles.header}>
-                <div className={styles.iconWrapper} style={{ background: 'linear-gradient(135deg, #FF9A9E 0%, #FECFEF 100%)' }}>
+                <div className={styles.iconWrapper} style={{ background: '#F43F5E' }}>
                     <Flame color="white" size={32} />
                 </div>
                 <div>

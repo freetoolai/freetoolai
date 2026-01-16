@@ -1,19 +1,44 @@
+/* Mobile and Tablet (default) */
 .header {
-    position: sticky;
-    top: 0;
+    position: fixed;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 95%;
+    max-width: 1280px;
     z-index: 100;
-    background: rgba(11, 11, 15, 0.82);
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 12px 0;
-    transition: all 0.3s;
+    background: var(--color-bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 20px;
+    padding: 12px 16px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow-sm);
 }
 
 .header.scrolled {
-    padding: 8px 0;
-    background: rgba(11, 11, 15, 0.95);
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    top: 12px;
+    padding: 12px 16px;
+    background: rgba(21, 23, 30, 0.95);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Desktop Adjustment - Account for Sidebar */
+@media (min-width: 1024px) {
+    .header {
+        left: calc(50% + 130px);
+        /* Center of remaining space (Screen/2 + Sidebar/2) */
+        transform: translateX(-50%);
+        width: calc(100% - 260px - 48px);
+        /* Full width minus sidebar minus margins */
+        max-width: 1200px;
+        top: 24px;
+    }
+
+    .header.scrolled {
+        top: 16px;
+        width: calc(100% - 260px - 32px);
+    }
 }
 
 .container {
@@ -28,20 +53,30 @@
 .logo {
     font-size: 22px;
     font-weight: 800;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #FFFFFF;
+    /* Flat White */
     display: flex;
     align-items: center;
     gap: 10px;
     flex-shrink: 0;
 }
 
+.logoHighlight {
+    color: #6366F1;
+    /* Flat Indigo */
+}
+
+@media (min-width: 1024px) {
+    .logo {
+        display: none;
+    }
+}
+
 .iconWrapper {
     width: 32px;
     height: 32px;
-    background: var(--gradient-primary);
+    background: #6366F1;
+    /* Flat Indigo */
     border-radius: 8px;
     display: flex;
     align-items: center;
@@ -67,6 +102,15 @@
     text-decoration: none;
     transition: color 0.3s;
     position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.navIcon {
+    display: flex;
+    align-items: center;
+    color: inherit;
 }
 
 .navLink:hover,
@@ -160,6 +204,8 @@
 
 .submitBtn {
     display: none;
+    flex-shrink: 0;
+    white-space: nowrap;
 }
 
 @media (min-width: 1280px) {

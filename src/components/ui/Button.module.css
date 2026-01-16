@@ -20,27 +20,40 @@
 
 /* Variants */
 .primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #6366F1;
+    /* Flat Indigo */
     color: #FFFFFF;
     font-size: 16px;
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    box-shadow: var(--shadow-sm);
+    /* No glow */
+    position: relative;
+    overflow: hidden;
 }
 
+/* Removed .primary::before gradient overlay */
+
 .primary:hover {
-    transform: scale(1.02);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    transform: translateY(-1px);
+    box-shadow: none;
+    /* No glow on hover */
+    opacity: 0.9;
+}
+
+.primary:hover::before {
+    opacity: 1;
 }
 
 .secondary {
-    background: rgba(255, 255, 255, 0.05);
-    color: #FFFFFF;
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--color-text-main);
     font-size: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border-subtle);
 }
 
 .secondary:hover {
-    background: rgba(255, 255, 255, 0.10);
-    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--color-primary);
+    color: #FFFFFF;
 }
 
 .ghost {
@@ -68,4 +81,16 @@
 .large {
     padding: 16px 32px;
     font-size: 18px;
+}
+
+@media (max-width: 640px) {
+    .medium {
+        padding: 10px 20px;
+        font-size: 15px;
+    }
+
+    .large {
+        padding: 14px 24px;
+        font-size: 16px;
+    }
 }
