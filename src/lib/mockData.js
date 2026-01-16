@@ -5,6 +5,9 @@ export const categories = [
     { id: 'audio-ai', name: 'Audio AI', icon: '', count: 142, gradient: 'linear-gradient(135deg, #fccb90 0%, #d57eeb 100%)' },
     { id: 'code-ai', name: 'Code AI', icon: '', count: 98, gradient: 'linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%)' },
     { id: 'business-ai', name: 'Business AI', icon: '', count: 156, gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)' },
+];
+
+export const tools = [
     {
         id: 'perplexity-ai',
         name: 'Perplexity AI',
@@ -24,9 +27,6 @@ export const categories = [
         isFeatured: false,
         isTrending: true,
     },
-];
-
-export const tools = [
     {
         id: 'midjourney',
         name: 'Midjourney',
