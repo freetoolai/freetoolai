@@ -1,13 +1,8 @@
-"use client";
-
-import { useState, useEffect } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { FaStar, FaChartLine, FaBookmark, FaArrowUpRightFromSquare, FaShare } from 'react-icons/fa6';
-import clsx from 'clsx';
+import ToolIcon from './ToolIcon';
 import styles from './ToolCard.module.css';
 
 export default function ToolCard({ tool }) {
+    // ... rest of component logic remains same until return
     const [isBookmarked, setIsBookmarked] = useState(false);
     const [bookmarkCount, setBookmarkCount] = useState(tool.saves || 2400);
 
@@ -71,13 +66,11 @@ export default function ToolCard({ tool }) {
                 {/* Header: Logo & Badges */}
                 <div className={styles.header}>
                     <div className={styles.logoWrapper}>
-                        <Image
+                        <ToolIcon
                             src={tool.logo}
-                            alt={tool.name}
-                            className={styles.logo}
-                            width={48}
-                            height={48}
-                            unoptimized // Since we are using external mock URLs or to prevent domain config issues for now
+                            name={tool.name}
+                            category={tool.category}
+                            size={56}
                         />
                     </div>
                     <div className={styles.badges}>

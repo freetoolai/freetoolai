@@ -1,0 +1,19 @@
+.fallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    color: white;
+    font-weight: 700;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    user-select: none;
+    flex-shrink: 0;
+}
+
+.icon {
+    border-radius: 12px;
+    object-fit: cover;
+    background: #1a1b1e;
+    padding: 2px;
+}

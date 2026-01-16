@@ -2,19 +2,10 @@ import { tools, categories } from '@/lib/mockData';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ExternalLink, Bookmark, Check, Share2, Star } from 'lucide-react';
+import ToolIcon from '@/components/ui/ToolIcon';
+import Image from 'next/image';
 import ToolDetailTabs from './ToolDetailTabs';
 import styles from './page.module.css';
-
-export async function generateMetadata({ params }) {
-    const { slug } = await params;
-    const tool = tools.find((t) => t.slug === slug);
-    if (!tool) return { title: 'Tool Not Found' };
-    return { title: `${tool.name} - ${tool.shortDescription} | FreeToolAI`, description: tool.description };
-}
-
-export async function generateStaticParams() {
-    return tools.map((tool) => ({ slug: tool.slug }));
-}
 
 export default async function ToolPage({ params }) {
     const { slug } = await params;
@@ -37,7 +28,12 @@ export default async function ToolPage({ params }) {
 
                     <div className={styles.hero}>
                         <div className={styles.logoWrapper}>
-                            <img src={tool.logo} alt={tool.name} className={styles.logo} />
+                            <ToolIcon
+                                src={tool.logo}
+                                name={tool.name}
+                                category={tool.category}
+                                size={120}
+                            />
                         </div>
                         <div className={styles.headerInfo}>
                             <h1 className={styles.title}>
@@ -68,7 +64,21 @@ export default async function ToolPage({ params }) {
                     <main className={styles.mainContent}>
                         <div className={styles.glassPanel}>
                             <div className={styles.screenshot}>
-                                Tool Interface Preview
+                                {tool.screenshot ? (
+                                    <Image
+                                        src={tool.screenshot}
+                                        alt={`${tool.name} Interface`}
+                                        width={800}
+                                        height={500}
+                                        layout="responsive"
+                                        className={styles.screenshotImg}
+                                    />
+                                ) : (
+                                    <div className={styles.previewPlaceholder}>
+                                        <div className={styles.placeholderIcon}><ExternalLink size={32} /></div>
+                                        <span>Click "Visit Website" to see {tool.name} in action</span>
+                                    </div>
+                                )}
                             </div>
                             <ToolDetailTabs tool={tool} alternatives={alternatives} />
                         </div>
@@ -100,7 +110,12 @@ export default async function ToolPage({ params }) {
                             <div className={styles.altList}>
                                 {alternatives.map(alt => (
                                     <Link key={alt.id} href={`/tool/${alt.slug}`} className={styles.altItem}>
-                                        <img src={alt.logo} className={styles.altLogo} alt={alt.name} />
+                                        <ToolIcon
+                                            src={alt.logo}
+                                            name={alt.name}
+                                            category={alt.category}
+                                            size={40}
+                                        />
                                         <div>
                                             <span className={styles.altName}>{alt.name}</span>
                                             <span className={styles.altCat}>{alt.pricing}</span>
