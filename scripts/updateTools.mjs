@@ -31,7 +31,8 @@ async function run() {
 
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-        const prompt = `Identify a real, popular AI tool launched or trending in 2024-2025. 
+        const prompt = `Identify a real, popular AI tool that was LITERALLY JUST LAUNCHED in the last 24-48 hours. 
+    Look for new releases on Product Hunt, Twitter/X, and AI newsletters to ensure we are the FIRST to list it.
     Return ONLY a JSON object representing the tool, following this exact schema:
     {
         "id": "lowercase-id-no-spaces",

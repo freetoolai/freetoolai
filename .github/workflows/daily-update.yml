@@ -2,7 +2,7 @@ name: Daily AI Tool Update
 
 on:
   schedule:
-    - cron: '0 */6 * * *' # Run every 6 hours (4 times a day)
+    - cron: '0 * * * *' # Run every hour for maximum speed ⚡
   workflow_dispatch: # Allow manual trigger
 
 jobs:
