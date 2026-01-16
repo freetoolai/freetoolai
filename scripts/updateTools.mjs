@@ -88,9 +88,9 @@ async function run() {
 
         if (match) {
             const toolsContent = match[1];
-            const updatedToolsContent = toolsContent + `    ${JSON.stringify(newTool, null, 8)},\n`;
-            content = content.replace(toolsRegex, `export const tools = [${updatedToolsContent} ];`);
-            console.log("Tools array updated.");
+            const newEntry = `    ${JSON.stringify(newTool, null, 8)},\n`;
+            content = content.replace(toolsRegex, `export const tools = [\n${newEntry}${toolsContent} ];`);
+            console.log("Tools array updated (prepended).");
         } else {
             throw new Error("Could not find tools array in mockData.js");
         }
